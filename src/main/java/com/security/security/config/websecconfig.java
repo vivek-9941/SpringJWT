@@ -96,4 +96,8 @@ public class websecconfig {
         //this authenticationManager needs to be injected in  usercontroller
 
     }
+//    User Logs In → Credentials are sent to AuthenticationManager.
+//            AuthenticationManager → Delegates the authentication to AuthenticationProvider.
+//            AuthenticationProvider → Uses UserDetailsService to fetch user details.
+//    Password Verification → Compares the provided password with the stored (hashed) password using BCryptPasswordEncoder.
 }

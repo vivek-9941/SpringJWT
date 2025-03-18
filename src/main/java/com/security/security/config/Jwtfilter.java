@@ -19,6 +19,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 @Component
 public class Jwtfilter extends OncePerRequestFilter {
+    //It extends OncePerRequestFilter, which ensures the filter is executed once per request.
     @Autowired
     UserDetailsService userDetailsService;
     @Autowired
@@ -32,6 +33,7 @@ public class Jwtfilter extends OncePerRequestFilter {
                 // Extract username from token and validate
                 String username = jwtservice.extractusername(token);
                 Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+// If authentication is null, it means the user is not authenticated yet.
                 if(username != null && authentication == null){//do athentication
                     UserDetails UserDetails = userDetailsService.loadUserByUsername(username);
                     if(jwtservice.isTokenValid(token, UserDetails)){
@@ -42,7 +44,8 @@ public class Jwtfilter extends OncePerRequestFilter {
                     }
 
                 }
-                else{//authenticated
+                else{
+
                     filterChain.doFilter(request,response);
                 }
             }
@@ -51,6 +54,7 @@ public class Jwtfilter extends OncePerRequestFilter {
             }
         }
         else{
+                    //If no token is found, the filter skips to the next step (filterChain.doFilter(request, response))
         filterChain.doFilter(request,response);
         }
     }
