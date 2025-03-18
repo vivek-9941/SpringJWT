@@ -22,7 +22,7 @@ public class Jwtservice {
     private String secretkey;
     public Jwtservice() {
         // Encode the secret key as a Base64 string for safe storage.
-      this.secretkey = Base64.getEncoder().encodeToString("KeyisvVivekAManenverngiuedwgalsnceofjwguc22oh4tuhfrghvoin".getBytes(StandardCharsets.UTF_8));
+      this.secretkey = Base64.getEncoder().encodeToString("KeyisVivekmaneidontlikeattendinglecturesmaushichigand".getBytes(StandardCharsets.UTF_8));
     }
     //JWTs allow you to embed additional information (claims) about the user or entity the token represents.
     public String generatetoken(user u) {
